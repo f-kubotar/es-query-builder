@@ -3,11 +3,11 @@ class EsQueryBuilder
     QUERY_REGEXP = /
       (
         (-)?                  # Minus
-        (?:(\w+):)?           # Field
+        (?:(\w+\.?):)?           # Field
         (?:
           (?:"(.*?)(?<!\\)")  # Quoted query
           |
-          ([^\s]+)            # Single query
+          ([^\s　]+)            # Single query
         )
       )
     /x
