@@ -26,7 +26,10 @@ describe EsQueryBuilder do
       it 'returns a match query' do
         should eq(
           match: {
-            '_all' => term
+            '_all' => {
+              query: term,
+              operator: 'and',
+            }
           }
         )
       end
@@ -42,7 +45,10 @@ describe EsQueryBuilder do
               must_not: [
                 {
                   match: {
-                    '_all' => term
+                    '_all' => {
+                      query: term,
+                      operator: 'and'
+                    }
                   }
                 }
               ]
@@ -64,7 +70,8 @@ describe EsQueryBuilder do
           should eq(
             multi_match: {
               fields: all_query_fields,
-              query: term
+              query: term,
+              operator: 'and'
             }
           )
         end
@@ -81,7 +88,8 @@ describe EsQueryBuilder do
                   {
                     multi_match: {
                       fields: all_query_fields,
-                      query: term
+                      query: term,
+                      operator: 'and'
                     }
                   }
                 ]
@@ -107,7 +115,10 @@ describe EsQueryBuilder do
                 should: [
                   {
                     match: {
-                      '_all' => term
+                      '_all' => {
+                        query: term,
+                        operator: 'and'
+                      }
                     }
                   },
                   {
@@ -116,7 +127,8 @@ describe EsQueryBuilder do
                       query: {
                         multi_match: {
                           fields: ['hoge.title'],
-                          query: term
+                          query: term,
+                          operator: 'and'
                         }
                       }
                     }
@@ -141,7 +153,10 @@ describe EsQueryBuilder do
                       should: [
                         {
                           match: {
-                            '_all' => term
+                            '_all' => {
+                              query: term,
+                              operator: 'and',
+                            }
                           }
                         },
                         {
@@ -150,7 +165,8 @@ describe EsQueryBuilder do
                             query: {
                               multi_match: {
                                 fields: ['hoge.title'],
-                                query: term
+                                query: term,
+                                operator: 'and',
                               }
                             }
                           }
@@ -185,7 +201,10 @@ describe EsQueryBuilder do
                 should: [
                   {
                     match: {
-                      '_all' => term
+                      '_all' => {
+                        query: term,
+                        operator: 'and',
+                      }
                     }
                   },
                   {
@@ -194,7 +213,8 @@ describe EsQueryBuilder do
                       query: {
                         multi_match: {
                           fields: child_field,
-                          query: term
+                          query: term,
+                          operator: 'and',
                         }
                       }
                     }
@@ -219,7 +239,10 @@ describe EsQueryBuilder do
                       should: [
                         {
                           match: {
-                            '_all' => term
+                            '_all' => {
+                              query: term,
+                              operator: 'and'
+                            }
                           }
                         },
                         {
@@ -228,7 +251,8 @@ describe EsQueryBuilder do
                             query: {
                               multi_match: {
                                 fields: child_field,
-                                query: term
+                                query: term,
+                                operator: 'and',
                               }
                             }
                           }
@@ -259,7 +283,8 @@ describe EsQueryBuilder do
                   {
                     multi_match: {
                       fields: ['hoge'],
-                      query: term
+                      query: term,
+                      operator: 'and',
                     }
                   },
                   {
@@ -268,7 +293,8 @@ describe EsQueryBuilder do
                       query: {
                         multi_match: {
                           fields: ['hoge.title'],
-                          query: term
+                          query: term,
+                          operator: 'and',
                         }
                       }
                     }
@@ -294,7 +320,8 @@ describe EsQueryBuilder do
                         {
                           multi_match: {
                             fields: ['hoge'],
-                            query: term
+                            query: term,
+                            operator: 'and',
                           }
                         },
                         {
@@ -303,7 +330,8 @@ describe EsQueryBuilder do
                             query: {
                               multi_match: {
                                 fields: ['hoge.title'],
-                                query: term
+                                query: term,
+                                operator: 'and',
                               }
                             }
                           }
@@ -334,7 +362,8 @@ describe EsQueryBuilder do
                   {
                     multi_match: {
                       fields: ['hoge'],
-                      query: term
+                      query: term,
+                      operator: 'and',
                     }
                   },
                   {
@@ -343,7 +372,8 @@ describe EsQueryBuilder do
                       query: {
                         multi_match: {
                           fields: ['hoge.title'],
-                          query: term
+                          query: term,
+                          operator: 'and',
                         }
                       }
                     }
@@ -369,7 +399,8 @@ describe EsQueryBuilder do
                         {
                           multi_match: {
                             fields: ['hoge'],
-                            query: term
+                            query: term,
+                            operator: 'and',
                           }
                         },
                         {
@@ -378,7 +409,8 @@ describe EsQueryBuilder do
                             query: {
                               multi_match: {
                                 fields: ['hoge.title'],
-                                query: term
+                                query: term,
+                                operator: 'and',
                               }
                             }
                           }
@@ -430,7 +462,8 @@ describe EsQueryBuilder do
                   {
                     multi_match: {
                       fields: all_query_fields,
-                      query: term
+                      query: term,
+                      operator: 'and',
                     }
                   },
                   {
@@ -439,7 +472,8 @@ describe EsQueryBuilder do
                       query: {
                         multi_match: {
                           fields: nested_fields,
-                          query: term
+                          query: term,
+                          operator: 'and',
                         }
                       }
                     }
@@ -450,7 +484,8 @@ describe EsQueryBuilder do
                       query: {
                         multi_match: {
                           fields: child_fields,
-                          query: term
+                          query: term,
+                          operator: 'and',
                         }
                       }
                     }
@@ -476,7 +511,8 @@ describe EsQueryBuilder do
                         {
                           multi_match: {
                             fields: all_query_fields,
-                            query: term
+                            query: term,
+                            operator: 'and',
                           }
                         },
                         {
@@ -485,7 +521,8 @@ describe EsQueryBuilder do
                             query: {
                               multi_match: {
                                 fields: nested_fields,
-                                query: term
+                                query: term,
+                                operator: 'and',
                               }
                             }
                           }
@@ -496,7 +533,8 @@ describe EsQueryBuilder do
                             query: {
                               multi_match: {
                                 fields: child_fields,
-                                query: term
+                                query: term,
+                                operator: 'and',
                               }
                             }
                           }
@@ -531,12 +569,18 @@ describe EsQueryBuilder do
             must: [
               {
                 match: {
-                  '_all' => term_1
+                  '_all' => {
+                    query: term_1,
+                    operator: 'and',
+                  }
                 }
               },
               {
                 match: {
-                  '_all' => term_2
+                  '_all' => {
+                    query: term_2,
+                    operator: 'and',
+                  }
                 }
               }
             ]
@@ -555,14 +599,20 @@ describe EsQueryBuilder do
               must: [
                 {
                   match: {
-                    '_all' => term_1
+                    '_all' => {
+                      query: term_1,
+                      operator: 'and',
+                    }
                   }
                 }
               ],
               must_not: [
                 {
                   match: {
-                    '_all' => term_2
+                    '_all' => {
+                      query: term_2,
+                      operator: 'and',
+                    }
                   }
                 }
               ]
@@ -582,12 +632,18 @@ describe EsQueryBuilder do
               must_not: [
                 {
                   match: {
-                    '_all' => term_1
+                    '_all' => {
+                      query: term_1,
+                      operator: 'and',
+                    }
                   }
                 },
                 {
                   match: {
-                    '_all' => term_2
+                    '_all' => {
+                      query: term_2,
+                      operator: 'and',
+                    }
                   }
                 }
               ]
@@ -614,7 +670,10 @@ describe EsQueryBuilder do
             filtered: {
               query: {
                 match: {
-                  '_all' => term_2
+                  '_all' => {
+                    query: term_2,
+                    operator: 'and',
+                  }
                 }
               },
               filter: {
@@ -649,7 +708,10 @@ describe EsQueryBuilder do
                     should: [
                       {
                         match: {
-                          '_all' => term_1
+                          '_all' => {
+                            query: term_1,
+                            operator: 'and',
+                          }
                         }
                       },
                       {
@@ -659,6 +721,7 @@ describe EsQueryBuilder do
                             multi_match: {
                               fields: nested_fields,
                               query: term_1,
+                              operator: 'and',
                             }
                           }
                         }
@@ -671,7 +734,10 @@ describe EsQueryBuilder do
                     should: [
                       {
                         match: {
-                          '_all' => term_2
+                          '_all' => {
+                            query: term_2,
+                            operator: 'and',
+                          }
                         }
                       },
                       {
@@ -681,6 +747,7 @@ describe EsQueryBuilder do
                             multi_match: {
                               fields: nested_fields,
                               query: term_2,
+                              operator: 'and',
                             }
                           }
                         }
@@ -716,7 +783,10 @@ describe EsQueryBuilder do
                     should: [
                       {
                         match: {
-                          '_all' => term_1
+                          '_all' => {
+                            query: term_1,
+                            operator: 'and',
+                          }
                         }
                       },
                       {
@@ -726,6 +796,7 @@ describe EsQueryBuilder do
                             multi_match: {
                               fields: child_fields,
                               query: term_1,
+                              operator: 'and',
                             }
                           }
                         }
@@ -738,7 +809,10 @@ describe EsQueryBuilder do
                     should: [
                       {
                         match: {
-                          '_all' => term_2
+                          '_all' => {
+                            query: term_2,
+                            operator: 'and',
+                          }
                         }
                       },
                       {
@@ -748,6 +822,7 @@ describe EsQueryBuilder do
                             multi_match: {
                               fields: child_fields,
                               query: term_2,
+                              operator: 'and',
                             }
                           }
                         }
@@ -783,7 +858,10 @@ describe EsQueryBuilder do
         it 'returns a match query for the field' do
           should eq(
             match: {
-              field => field_query
+              field => {
+                query: field_query,
+                operator: 'and',
+              }
             }
           )
         end
@@ -823,7 +901,8 @@ describe EsQueryBuilder do
           should eq(
             multi_match: {
               fields: all_query_fields,
-              query: field_query
+              query: field_query,
+              operator: 'and',
             }
           )
         end
@@ -842,7 +921,10 @@ describe EsQueryBuilder do
       it 'returns a match query with the whole quoted query' do
         should eq(
           match: {
-            '_all' => quoted_query
+            '_all' => {
+              query: quoted_query,
+              operator: 'and',
+            }
           }
         )
       end
@@ -860,7 +942,8 @@ describe EsQueryBuilder do
           should eq(
             multi_match: {
               fields: all_query_fields,
-              query: quoted_query
+              query: quoted_query,
+              operator: 'and',
             }
           )
         end
@@ -896,7 +979,10 @@ describe EsQueryBuilder do
         it 'returns a match query for the field' do
           should eq(
             match: {
-              field => quoted_query
+              field => {
+                query: quoted_query,
+                operator: 'and',
+              }
             }
           )
         end
@@ -939,7 +1025,10 @@ describe EsQueryBuilder do
         it 'returns a match query for _all field' do
           should eq(
             match: {
-              '_all' => quoted_query
+              '_all' => {
+                query: quoted_query,
+                operator: 'and',
+              }
             }
           )
         end
@@ -952,7 +1041,10 @@ describe EsQueryBuilder do
           it 'returns a match query inclues "OR" for _all field' do
             should eq(
               match: {
-                '_all' => quoted_query
+                '_all' => {
+                  query: quoted_query,
+                  operator: 'and',
+                }
               }
             )
           end
@@ -1017,12 +1109,18 @@ describe EsQueryBuilder do
                     must: [
                       {
                         match: {
-                          '_all' => term_1
+                          '_all' => {
+                            query: term_1,
+                            operator: 'and',
+                          }
                         },
                       },
                       {
                         match: {
-                          field_2 => term_2
+                          field_2 => {
+                            query: term_2,
+                            operator: 'and',
+                          }
                         }
                       }
                     ]
