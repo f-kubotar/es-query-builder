@@ -193,14 +193,18 @@ class EsQueryBuilder
       if field.is_a?(String)
         {
           match: {
-            field => term
+            field => {
+              query: term,
+              operator: 'and'
+            }
           }
         }
       else
         {
           multi_match: {
             fields: field,
-            query: term
+            query: term,
+            operator: 'and'
           }
         }
       end
